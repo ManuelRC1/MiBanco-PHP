@@ -13,8 +13,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script src="js/script-footer.js" crossorigin="anonymous"></script>
+    <link href="css/estilo-footer.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -25,39 +25,41 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="imagenes/logo%20empresa.png">Carousel</a>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white">
+        <a href="welcome.php">
+            <img src="imagenes/logo_principal.jpg"  height="60" width="120" >
+        </a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>s
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="create.php">Crear Vacuna</a>
+                    <a class="text-black nav-link" href="create.php">Crear Vacuna</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link active" href="listado.php">lista de vacunas</a>
+                    <a class="text-black nav-link" href="listado.php">lista de vacunas</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link active" href="pacientes.php">Registrar pacientes</a>
+                    <a class="text-black nav-link" href="pacientes.php">Registrar pacientes</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <a class="text-black nav-link" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
                         <a class="dropdown-item" href="#">Perfil</a>
                         <a class="dropdown-item" href="logout.php">cerrar Sesion</a>
-
-
                     </div>
                 </li>
+                <li class="nav-item active">
+                    <a class="text-black nav-link" href="pdf/cn.php">Registrar pacientes</a>
+                </li>
             </ul>
-
         </div>
     </nav>
 </header>
 
 <main role="main">
-
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -81,7 +83,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <div class="carousel-caption">
                         <h1>Los origenes de la vacuna</h1>
                         <p>Como una vacuna consiguio erradicar la primera enfermedad contagiosa del mundo</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Entrar</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="http://proyectoavatar.enfermeriacomunitaria.org/vacunas/historia-de-las-vacunas" role="button">Entrar</a></p>
                     </div>
                 </div>
             </div>
@@ -91,7 +93,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <div class="carousel-caption text-right">
                         <h1>Cita</h1>
                         <p>para pedir cita a un paciente presiona el boton</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">cita</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="calendario/index.php" role="button">calendario</a></p>
                     </div>
                 </div>
             </div>
@@ -131,7 +133,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <img class="rounded-circle" src="imagenes/libro.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2>Historia</h2>
                 <p>la historia completa en el siguiente enlace de como se desarrollo la primera vacuna</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="http://proyectoavatar.enfermeriacomunitaria.org/vacunas/historia-de-las-vacunas" role="button">Ver detalles &raquo;</a></p>
             </div>
         </div>
         <hr class="featurette-divider">
@@ -172,18 +174,41 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="imagenes/bombilla.jpg">
             </div>
+
         </div>
-        <hr class="featurette-divider">
-
+        <br>
     </div>
-
-
-    <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
 </main>
+
+<footer class="footer text-center col-12">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Localizacion</h4>
+                <p class="lead mb-0">
+                    Av. Manuel Fraga Iribarne, 2
+                    <br />
+                    28055 Madrid
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Redes sociales</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/saludcmadrid/?hl=es"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/SaludMadrid?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fab fa-fw fa-twitter-in"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4">Atencion al ciudadano</h4>
+                <p class="lead mb-0">
+                    Contacta con nosotros
+                    <a href="https://www.comunidad.madrid/solicitud-informacion">contacta</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

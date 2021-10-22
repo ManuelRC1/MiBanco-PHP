@@ -2,9 +2,12 @@ USE quevedodb;
 
 CREATE TABLE usuarios (
                           id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                          email VARCHAR(255) NOT NULL UNIQUE,
-                          passwd VARCHAR(255) NOT NULL,
-                          fecha_alta DATETIME DEFAULT CURRENT_TIMESTAMP
+                          nombre VARCHAR(20) NOT NULL,
+                          apellidos VARCHAR(50) NOT NULL,
+                          Direccion VARCHAR(100) NOT NULL,
+                          edad DATE,
+                          email VARCHAR(100) NOT NULL,
+                          password VARCHAR(100) NOT NULL
 );
 
 -- Crear tabla vacuna
@@ -25,7 +28,8 @@ CREATE TABLE pacientes (
                            nombre VARCHAR(20) NOT NULL,
                            apellidos VARCHAR(100) NOT NULL,
                            DNI VARCHAR(9) NOT NULL,
-                           edad VARCHAR(3) NOT NULL
+                           edad VARCHAR(3) NOT NULL,
+                           vacuna VARCHAR(50) NOT NULL
 
 );
 
