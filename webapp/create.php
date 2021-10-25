@@ -47,27 +47,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $numdosis = $input_numdosis;
     }
-
-    $tiempominimo = trim($_POST["tiempominimo"]);
-    $tiempomaximo = trim($_POST["tiempomaximo"]);
-
     // Check input errors before inserting in database
     if(empty($nombre_err) && empty($fabricante_err) && empty($nombrelargo_err)&& empty($numdosis_err)) {
         // Prepare an insert statement
-        $sql = "INSERT INTO vacuna (nombre, nombre_largo, fabricante, num_dosis, tiempo_minimo, tiempo_maximo) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO vacuna (nombre, nombre_largo, fabricante, num_dosis) VALUES (?, ?, ?, ?)";
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("sssiii", $param_nombre, $param_nombrelargo, $param_fabricante,
-                $param_numdosis, $param_tiempominimo, $param_tiempomaximo);
+            $stmt->bind_param("sssi", $param_nombre, $param_nombrelargo, $param_fabricante,
+                $param_numdosis);
 
             // Set parameters
             $param_nombre = $nombre;
             $param_nombrelargo = $nombrelargo;
             $param_fabricante = $fabricante;
             $param_numdosis = $numdosis;
-            $param_tiempominimo = $tiempominimo;
-            $param_tiempomaximo = $tiempomaximo;
 
 
             // Attempt to execute the prepared statement
@@ -104,14 +98,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="js/script-footer.js" crossorigin="anonymous"></script>
     <link href="css/estilo-footer.css" rel="stylesheet">
 </head>
-<body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white">
         <a href="welcome.php">
             <img src="imagenes/logo_principal.jpg"  height="60" width="120" >
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>s
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
@@ -124,10 +118,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <li class="nav-item active">
                     <a class="text-black nav-link" href="pacientes.php">Registrar pacientes</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="text-black nav-link" href="pacientes/pacientesVacunas.php">Resultados</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="text-black nav-link" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <a class="text-black nav-link" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="perfil/perfil.php">Perfil</a>
                         <a class="dropdown-item" href="logout.php">cerrar Sesion</a>
                     </div>
                 </li>
@@ -165,26 +162,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="numdosis" class="form-control <?php echo (!empty($numdosis_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $numdosis; ?>">
                             <span class="invalid-feedback"><?php echo $numdosis_err;?></span>
                         </div>
-                        <div class="form-group">
-                            <label>Tiempo mínimo</label>
-                            <input type="text" name="tiempominimo" class="form-control <?php echo (!empty($tiempominimo_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $tiempominimo; ?>">
-                            <span class="invalid-feedback"><?php echo $tiempominimo_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Tiempo máximo</label>
-                            <input type="text" name="tiempomaximo" class="form-control <?php echo (!empty($tiempomaximo_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $tiempomaximo; ?>">
-                            <span class="invalid-feedback"><?php echo $tiempomaximo_err;?></span>
-                        </div>
                         <br/>
-                        <input type="submit" class="btn btn-danger" value="Submit">
-                        <a href="listado.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <input type="submit" class="btn btn-danger" value="enviar">
+                        <a href="listado.php" class="btn btn-secondary ml-2">Cancelar</a>
                     </form>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
-    <br/><br/>
 </main>
+<br/><br/><br/><br/>
 <footer class="footer text-center col-12">
     <div class="container">
         <div class="row">

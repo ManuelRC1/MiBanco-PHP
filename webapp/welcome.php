@@ -23,6 +23,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link href="css/carousel.css" rel="stylesheet">
 </head>
 <body>
+Bienvenido <?php echo $_SESSION['email']; ?>
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white">
@@ -44,15 +45,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <li class="nav-item active">
                     <a class="text-black nav-link" href="pacientes.php">Registrar pacientes</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="text-black nav-link" href="pacientes/pacientesVacunas.php">Resultados</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="text-black nav-link" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <a class="text-black nav-link" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="perfil/perfil.php">Perfil</a>
                         <a class="dropdown-item" href="logout.php">cerrar Sesion</a>
                     </div>
-                </li>
-                <li class="nav-item active">
-                    <a class="text-black nav-link" href="pdf/cn.php">Registrar pacientes</a>
                 </li>
             </ul>
         </div>
@@ -73,7 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <div class="carousel-caption text-left">
                         <h1>Lista de las vacunas</h1>
                         <p>consultelo mas detalladamente en el siguiente enlace</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">consultar</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="listado.php" role="button">consultar</a></p>
                     </div>
                 </div>
             </div>

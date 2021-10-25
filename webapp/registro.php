@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_direccion = trim($_POST["direccion"]);
     if (empty($input_direccion)) {
         $direccion_err = "Por favor Introduce una direccion.";
-    } elseif (!filter_var($input_direccion, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^\S+@\S+\.\S+$/")))) {
+    } elseif (!filter_var($input_direccion, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[A-Za-z0-9]+/")))) {
         $direccion_err = "Por favor introduce una direccion valida";
     } else {
         $direccion = $input_direccion;

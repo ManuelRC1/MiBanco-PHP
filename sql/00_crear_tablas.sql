@@ -16,9 +16,8 @@ CREATE TABLE vacuna (
                         nombre VARCHAR(20) NOT NULL,
                         nombre_largo VARCHAR(100) NOT NULL,
                         fabricante VARCHAR(255) NOT NULL,
-                        num_dosis INT(10) NOT NULL,
-                        tiempo_minimo INT,
-                        tiempo_maximo INT
+                        num_dosis INT(10) NOT NULL
+
 );
 
 

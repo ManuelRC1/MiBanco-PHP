@@ -46,15 +46,15 @@
                 <li class="nav-item active">
                     <a class="text-black nav-link" href="pacientes.php">Registrar pacientes</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="text-black nav-link" href="pacientes/pacientesVacunas.php">Resultados</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="text-black nav-link" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <a class="text-black nav-link" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="perfil/perfil.php">Perfil</a>
                         <a class="dropdown-item" href="logout.php">cerrar Sesion</a>
                     </div>
-                </li>
-                <li>
-
                 </li>
             </ul>
         </div>
@@ -85,6 +85,8 @@
                         echo "<th>apellidos</th>";
                         echo "<th>DNI</th>";
                         echo "<th>Edad</th>";
+                        echo "<th>Vacuna</th>";
+
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -95,6 +97,7 @@
                             echo "<td>" . $row['apellidos'] . "</td>";
                             echo "<td>" . $row['DNI'] . "</td>";
                             echo "<td>" . $row['edad'] . "</td>";
+                            echo "<td>" . $row['vacuna'] . "</td>";
                             echo "</td>";
                             echo "</tr>";
                         }

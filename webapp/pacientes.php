@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $edad = $input_edad;
     }
 
-    // Validate vacuna
+    // Validate Vacuna
     $input_vacuna = trim($_POST["vacuna"]);
     if(empty($input_vacuna)){
         $vacuna_err = "Por favor introduce una vacuna";
@@ -54,8 +54,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $vacuna = $input_vacuna;
     }
+
+
     // Check input errors before inserting in database
-    if(empty($nombre_err) && empty($fabricante_err) && empty($nombrelargo_err)&& empty($numdosis_err)){
+    if(empty($nombre_err) && empty($DNI_err) && empty($vacuna_err)){
         // Prepare an insert statement
         $sql = "INSERT INTO pacientes (nombre, apellidos, DNI, edad, vacuna) VALUES (?, ?, ?, ?, ?)";
 
@@ -70,8 +72,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_DNI = $DNI;
             $param_edad = $edad;
             $param_vacuna = $vacuna;
-
-
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
@@ -91,26 +91,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mysqli->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <style>
+
+        .wrapper{
+            width: 600px;
+            margin: 0 auto;
+        }
+
         body{
             font-family: Arail, sans-serif;
         }
         /* Formatting search box */
         .search-box{
-            width: 300px;
+            width: 100%;
             position: relative;
-            display: inline-block;
-            font-size: 14px;
-        }
-        .search-box input[type="text"]{
-            height: 32px;
-            padding: 5px 10px;
-            border: 1px solid #CCCCCC;
-            font-size: 14px;
+
         }
         .result{
             position: absolute;
@@ -126,14 +124,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .result p{
             margin: 0;
             padding: 7px 10px;
-            border: 1px solid #CCCCCC;
             border-top: none;
             cursor: pointer;
         }
-        .result p:hover{
-            background: #f2f2f2;
-        }
+
     </style>
+    <script src="js/script-footer.js" crossorigin="anonymous"></script>
+    <link href="css/estilo-footer.css" rel="stylesheet">
+
+
+
+    <meta charset="UTF-8">
+    <title>PHP MySQL AJAX ejemplo</title>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.search-box input[type="text"]').on("keyup input", function(){
@@ -157,18 +161,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             });
         });
     </script>
-    <meta charset="UTF-8">
-    <title>Create Record</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-    </style>
-    <script src="js/script-footer.js" crossorigin="anonymous"></script>
-    <link href="css/estilo-footer.css" rel="stylesheet">
-    <script src="js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <header>
@@ -199,73 +191,80 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </nav>
 </header>
-
 <main role="main">
     <br><br><br><br>
-<div class="wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="mt-5">Registro paciente</h2>
-                <form action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]); ?>" method="post">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
-                        <span class="invalid-feedback"><?php echo $nombre_err;?></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Apellidos</label>
-                        <input type="text" name="apellidos" class="form-control <?php echo (!empty($apellidos_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellidos; ?>">
-                        <span class="invalid-feedback"><?php echo $apellidos_err;?></span>
-                    </div>
-                    <div class="form-group">
-                        <label>DNI</label>
-                        <input type="text" name="DNI" class="form-control <?php echo (!empty($DNI_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $DNI; ?>">
-                        <span class="invalid-feedback"><?php echo $DNI_err;?></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Edad</label>
-                        <input type="text" name="edad" class="form-control <?php echo (!empty($edad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $edad; ?>">
-                        <span class="invalid-feedback"><?php echo $edad_err;?></span>
-                    </div>
-                    <br/>
-                    <input type="submit" class="btn btn-danger" value="Enviar">
-                    <a href="listado.php" class="btn btn-secondary ml-2">Cancelar</a>
-                </form>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mt-5">Registro paciente</h2>
+                    <form action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]); ?>" method="post">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
+                            <span class="invalid-feedback"><?php echo $nombre_err;?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" name="apellidos" class="form-control <?php echo (!empty($apellidos_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellidos; ?>">
+                            <span class="invalid-feedback"><?php echo $apellidos_err;?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>DNI</label>
+                            <input type="text" name="DNI" class="form-control <?php echo (!empty($DNI_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $DNI; ?>">
+                            <span class="invalid-feedback"><?php echo $DNI_err;?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Edad</label>
+                            <input type="text" name="edad" class="form-control <?php echo (!empty($edad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $edad; ?>">
+                            <span class="invalid-feedback"><?php echo $edad_err;?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Vacuna</label>
+                            <input type="text" name="vacuna" class="form-control <?php echo (!empty($vacuna_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $vacuna; ?>">
+                            <span class="invalid-feedback"><?php echo $vacuna_err;?></span>
+                        </div>
+                        <br/>
+                        <input type="submit" class="btn btn-danger" value="Enviar">
+                        <a href="listado.php" class="btn btn-secondary ml-2">Cancelar</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <br/><br/><br/><br/><br/><br/><br/><br/>
-</main>
-<footer class="footer text-center col-12">
-    <div class="container">
-        <div class="row">
-            <!-- Footer Location-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Localizacion</h4>
-                <p class="lead mb-0">
-                    Av. Manuel Fraga Iribarne, 2
-                    <br />
-                    28055 Madrid
-                </p>
-            </div>
-            <!-- Footer Social Icons-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Redes sociales</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/saludcmadrid/?hl=es"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/SaludMadrid?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fab fa-fw fa-twitter-in"></i></a>
-            </div>
-            <!-- Footer About Text-->
-            <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">Atencion al ciudadano</h4>
-                <p class="lead mb-0">
-                    Contacta con nosotros
-                    <a href="https://www.comunidad.madrid/solicitud-informacion">contacta</a>
-                </p>
+    <footer class="footer text-center col-12">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Location-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Localizacion</h4>
+                    <p class="lead mb-0">
+                        Av. Manuel Fraga Iribarne, 2
+                        <br />
+                        28055 Madrid
+                    </p>
+                </div>
+                <!-- Footer Social Icons-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Redes sociales</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/saludcmadrid/?hl=es"><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/SaludMadrid?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fab fa-fw fa-twitter-in"></i></a>
+                </div>
+                <!-- Footer About Text-->
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">Atencion al ciudadano</h4>
+                    <p class="lead mb-0">
+                        Contacta con nosotros
+                        <a href="https://www.comunidad.madrid/solicitud-informacion">contacta</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</main>
+
 </body>
 </html>
+
+

@@ -34,8 +34,9 @@
         <a href="welcome.php">
             <img src="imagenes/logo_principal.jpg"  height="60" width="120" >
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>s
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
@@ -48,10 +49,13 @@
                 <li class="nav-item active">
                     <a class="text-black nav-link" href="pacientes.php">Registrar pacientes</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="text-black nav-link" href="pacientes/pacientesVacunas.php">Resultados</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="text-black nav-link" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                    <a class="text-black nav-link" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="perfil/perfil.php">Perfil</a>
                         <a class="dropdown-item" href="logout.php">cerrar Sesion</a>
                     </div>
                 </li>
@@ -118,7 +122,7 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="footer text-center col-12">
     <div class="container">
         <div class="row">
